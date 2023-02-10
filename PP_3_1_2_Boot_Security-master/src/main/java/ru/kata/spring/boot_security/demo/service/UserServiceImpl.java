@@ -17,7 +17,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class UserServiceImpl implements UserService, UserDetailsService {
+public class UserServiceImpl implements UserService {//, UserDetailsService
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
@@ -74,5 +74,15 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         }
         return user.get();
     }
+
+    @Override
+    public UserDetails userAlreadyExists(String username) {
+        try {
+           return userRepository.findByUsername(username);
+        } catch (UsernameNotFoundException e){
+            return null;
+        }
+    }
+
 
 }

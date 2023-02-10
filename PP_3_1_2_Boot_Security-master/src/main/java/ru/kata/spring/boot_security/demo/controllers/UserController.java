@@ -21,9 +21,7 @@ public class UserController {
 
     @GetMapping("/user")
     public String show(Model model, Authentication authentication) {
-        UserDetails realUser = (UserDetails) authentication.getPrincipal();
-        model.addAttribute("user", realUser);
+        model.addAttribute("user", authentication.getPrincipal() );
         return "user";
     }
-
 }
