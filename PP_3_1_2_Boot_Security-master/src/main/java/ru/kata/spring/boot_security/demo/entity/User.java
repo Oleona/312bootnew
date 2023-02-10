@@ -22,19 +22,15 @@ public class User implements UserDetails {
     private String lastName;
     @Column(name = "age")
     private Integer age;
-
-    @Column(name = "username",nullable = false, unique = true)
+    @Column(name = "username", nullable = false, unique = true)
     private String username;
-
     @Column(name = "password")
     private String password;
-
     @Column(name = "email")
     private String email;
 
-   // @ManyToMany(fetch = FetchType.EAGER)
-   @ManyToMany(fetch = FetchType.LAZY)
-   @Fetch(value = FetchMode.JOIN)
+    @ManyToMany(fetch = FetchType.LAZY)
+    @Fetch(value = FetchMode.JOIN)
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -43,19 +39,7 @@ public class User implements UserDetails {
     public User() {
     }
 
-//    public User(String name, String lastName, Integer age, String username, String password, String email, Collection<Role> roles) {
-//        this.name = name;
-//        this.lastName = lastName;
-//        this.age = age;
-//        this.username = username;
-//        this.password = password;
-//        this.email = email;
-//        this.roles = roles;
-//    }
-
-
     public Long getId() {
-
         return id;
     }
 

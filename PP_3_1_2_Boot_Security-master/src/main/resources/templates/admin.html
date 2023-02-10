@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <title>Admin</title>
 </head>
 <body>
-<div >
+<div>
 
     <p>
         <a th:href="@{/logout}">Logout</a>
@@ -33,7 +33,7 @@
             <td th:text="${user.getEmail()}"/>
             <td th:text="${user.getUsername()}"/>
             <td th:text="${user.getPassword()}"/>
-            <td th:each="role:${user.getRoles()}"th:text="${role.name}">
+            <td th:each="role:${user.getRoles()}" th:text="${role.name}">
 
             <td><a th:href="@{/admin/edit/{id}(id=${user.getId()})}">Edit</a></td>
             <td>

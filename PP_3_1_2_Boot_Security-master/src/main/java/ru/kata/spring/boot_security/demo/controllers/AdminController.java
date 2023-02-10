@@ -23,7 +23,6 @@ public class AdminController {
     public AdminController(UserService userService, RoleRepository roleRepository, UserRepository userRepository) {
         this.userService = userService;
         this.roleRepository = roleRepository;
-
         this.userRepository = userRepository;
     }
 
@@ -32,7 +31,6 @@ public class AdminController {
     public String listUsers(ModelMap model) {
         List<User> users = userService.listUsers();
         model.addAttribute("listUsers", users);
-        //return "index";
         return "admin";
     }
 
@@ -45,7 +43,7 @@ public class AdminController {
 
     @GetMapping(value = "/admin/new")
     public String newEmptyUser(@ModelAttribute("user") User user, ModelMap model) {
-        List<Role> roles = (List<Role>) roleRepository.findAll();
+        List<Role> roles = roleRepository.findAll();
         model.addAttribute("allRoles", roles);
         return "/new";
     }
@@ -60,12 +58,11 @@ public class AdminController {
             return "/new";
         }
 
-
     }
 
     @GetMapping("/admin/edit/{id}")
     public String edit(ModelMap model, @PathVariable("id") Long id) {
-        List<Role> roles = (List<Role>) roleRepository.findAll();
+        List<Role> roles = roleRepository.findAll();
         model.addAttribute("allRoles", roles);
         model.addAttribute("user", userService.getUserById(id));
         return "/edit";
@@ -73,7 +70,6 @@ public class AdminController {
 
     @PatchMapping("/admin/edit/{id}")
     public String update(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
-
         userService.update(user, id);
         return "redirect:/admin";
     }

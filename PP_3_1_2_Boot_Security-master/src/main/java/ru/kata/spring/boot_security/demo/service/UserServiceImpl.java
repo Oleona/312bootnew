@@ -62,7 +62,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public User getUserById(Long userid) {
-
         Optional<User> user = userRepository.findById(userid);
         return user.orElse(new User());
     }
@@ -73,7 +72,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         if (user.isEmpty()) {
             throw new UsernameNotFoundException("User not found!");
         }
-        // у Алишева оборачивали в new UserDetails
         return user.get();
     }
 
